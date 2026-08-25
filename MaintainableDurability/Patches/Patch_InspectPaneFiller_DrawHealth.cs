@@ -33,7 +33,6 @@ namespace MaintainableDurability.Patches
 
         public static float OverrideWhatever(float width, ref string label, Thing t)
         {
-            Log.Message("test");
             if (!(t is Pawn) && t != null && t.TryGetComp<CompMaintenanceDurability>(out var comp))
             {
                 label = $"{t.HitPoints.ToStringCached()} / {comp.EffectiveMaxHitPoints.ToStringCached()}";

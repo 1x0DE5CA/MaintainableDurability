@@ -32,26 +32,7 @@ namespace MaintainableDurability.Comps
                 var armorRatingStat = dinfo.Def.armorCategory.armorRatingStat;
                 var armorRating = victim.GetStatValue(armorRatingStat);
 
-                // var stuffStat = 0f;
-                // if (armorRatingStat.label == StatDefOf.StuffPower_Armor_Blunt.label)
-                // {
-                //     stuffStat = victim.Stuff.statBases.GetStatValueFromList(StatDefOf.StuffPower_Armor_Blunt, 1);
-                // }
-                // if (armorRatingStat.label == StatDefOf.StuffPower_Armor_Sharp.label)
-                // {
-                //     stuffStat = victim.Stuff.statBases.GetStatValueFromList(StatDefOf.StuffPower_Armor_Sharp, 1);
-                // }
-                // if (armorRatingStat.label == StatDefOf.StuffPower_Armor_Heat.label)
-                // {
-                //     stuffStat = victim.Stuff.statBases.GetStatValueFromList(StatDefOf.StuffPower_Armor_Heat, 1);
-                // }
-
-                // if (stuffStat.CompareTo(1f) == 0)
-                //     Log.Message($"No stuff stats for {armorRatingStat} on {victim.Label}, default value applied");
-                // Log.Message($"Stats for {armorRatingStat}: {stuffStat}");
-
                 var postArDamage = damage * (1 - armorRating);
-                // var potDamage = damage * stuffStat;
 
                 finalDamage = postArDamage * 0.25f;
             }

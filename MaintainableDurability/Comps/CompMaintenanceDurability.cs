@@ -31,7 +31,6 @@ namespace MaintainableDurability.Comps
             {
                 var armorRatingStat = dinfo.Def.armorCategory.armorRatingStat;
                 var armorRating = victim.GetStatValue(armorRatingStat);
-                if (armorRating == 0) armorRating = 1;
 
                 // var stuffStat = 0f;
                 // if (armorRatingStat.label == StatDefOf.StuffPower_Armor_Blunt.label)

@@ -34,7 +34,7 @@ namespace MaintainableDurability.Comps
 
                 var postArDamage = damage * (1 - armorRating);
 
-                finalDamage = postArDamage * 0.25f;
+                finalDamage = postArDamage * MaintainableDurabilitySettings.MdDamageFactor;
             }
 
             var newDurability = finalDamage / victim.MaxHitPoints;

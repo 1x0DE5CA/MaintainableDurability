@@ -5,7 +5,12 @@ namespace MaintainableDurability
 {
     public class MaintainableDurabilityMod : Mod
     {
-        public MaintainableDurabilityMod(ModContentPack content) : base(content) { }
+        private MaintainableDurabilitySettings _settings;
+
+        public MaintainableDurabilityMod(ModContentPack content) : base(content)
+        {
+            _settings = GetSettings<MaintainableDurabilitySettings>();
+        }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {

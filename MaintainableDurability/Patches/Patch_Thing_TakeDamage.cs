@@ -11,15 +11,12 @@ namespace MaintainableDurability.Patches
         [HarmonyPrefix]
         public static void Prefix(Thing __instance, DamageInfo dinfo)
         {
-            if (__instance is Apparel apparel)
+            if (__instance is Apparel apparel && apparel.TryGetComp<CompMaintenanceDurability>(out var comp))
             {
-                if (apparel != null && apparel.TryGetComp<CompMaintenanceDurability>(out var comp))
-                {
-                    comp.TakeDamage(dinfo, apparel);
+                comp.TakeDamage(dinfo, apparel);
 
-                    if (apparel.HitPoints > comp.EffectiveMaxHitPoints)
-                        apparel.HitPoints = comp.EffectiveMaxHitPoints;
-                }
+                if (apparel.HitPoints > comp.EffectiveMaxHitPoints)
+                    apparel.HitPoints = comp.EffectiveMaxHitPoints;
             }
         }
     }

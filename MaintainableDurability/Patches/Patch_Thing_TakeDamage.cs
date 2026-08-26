@@ -9,7 +9,7 @@ namespace MaintainableDurability.Patches
     public static class Patch_Thing_TakeDamage
     {
         [HarmonyPrefix]
-        public static void Prefix(Thing __instance, DamageInfo dinfo)
+        public static bool Prefix(Thing __instance, ref DamageWorker.DamageResult __result, DamageInfo dinfo)
         {
             if (__instance is Apparel apparel && apparel.TryGetComp<CompMaintenanceDurability>(out var comp))
             {
@@ -17,7 +17,15 @@ namespace MaintainableDurability.Patches
 
                 if (apparel.HitPoints > comp.EffectiveMaxHitPoints)
                     apparel.HitPoints = comp.EffectiveMaxHitPoints;
+
+                if (dinfo.Def == DamageDefOf.Deterioration)
+                {
+                    __result = new DamageWorker.DamageResult();
+                    return false;
+                }
             }
+
+            return true;
         }
     }
 }

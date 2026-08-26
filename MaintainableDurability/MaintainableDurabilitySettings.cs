@@ -8,8 +8,9 @@ namespace MaintainableDurability
 
         public override void ExposeData()
         {
-            Scribe_Values.Look(ref MdDamageFactor, "MdDamageFactor", 0.5f);
             base.ExposeData();
+
+            Scribe_Values.Look(ref MdDamageFactor, "mdDamageFactor", 0.5f);
         }
     }
 }

@@ -12,20 +12,16 @@ namespace MaintainableDurability.Patches
         [HarmonyPostfix]
         public static void Postfix(Thing __instance, ref TipSignal __result)
         {
-            if (__instance is Apparel apparel)
+            if (__instance is Apparel apparel && apparel.TryGetComp<CompMaintenanceDurability>(out var comp))
             {
-                var mdComp = apparel.TryGetComp<CompMaintenanceDurability>();
-                if (mdComp != null)
-                {
-                    var hpDelimiter = __result.text.LastIndexOf("/");
-                    var text = __result.text.Substring(0, hpDelimiter + 1);
-                    text += $" {mdComp.EffectiveMaxHitPoints}";
+                var hpDelimiter = __result.text.LastIndexOf("/");
+                var text = __result.text.Substring(0, hpDelimiter + 1);
+                text += $" {comp.EffectiveMaxHitPoints}";
 
-                    if (mdComp.EffectiveMaxHitPoints < apparel.MaxHitPoints)
-                        text += $" ({apparel.MaxHitPoints})".Colorize(Color.grey);
+                if (comp.EffectiveMaxHitPoints < apparel.MaxHitPoints)
+                    text += $" ({apparel.MaxHitPoints})".Colorize(Color.grey);
 
-                    __result.text = text;
-                }
+                __result.text = text;
             }
         }
     }

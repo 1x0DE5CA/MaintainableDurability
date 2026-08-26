@@ -15,6 +15,13 @@ namespace MaintainableDurability.Patches
             if (__instance is Apparel apparel && apparel.TryGetComp<CompMaintenanceDurability>(out var comp))
             {
                 var hpDelimiter = __result.text.LastIndexOf("/");
+                if (hpDelimiter == -1)
+                {
+                    Log.Error(
+                        "[MaintainableDurability] Unable to patch ThingWithComps.GetTooltip(): something has changed the contents of tooltip text");
+                    return;
+                }
+
                 var text = __result.text.Substring(0, hpDelimiter + 1);
                 text += $" {comp.EffectiveMaxHitPoints}";
 

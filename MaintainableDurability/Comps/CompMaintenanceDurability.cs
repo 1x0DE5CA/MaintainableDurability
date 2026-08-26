@@ -14,7 +14,7 @@ namespace MaintainableDurability.Comps
         {
             base.Initialize(props);
 
-            if (parent is Apparel apparel)
+            if (EffectiveMaxHitPoints == 0 && parent is Apparel apparel)
                 EffectiveMaxHitPoints = apparel.MaxHitPoints;
         }
 
@@ -45,6 +45,11 @@ namespace MaintainableDurability.Comps
         public override string CompTipStringExtra()
         {
             return $"Maintenance: {_currentDurability.ToStringPercent()}";
+        }
+
+        public override void PostExposeData()
+        {
+            Scribe_Values.Look(ref EffectiveMaxHitPoints, "effectiveMaxHitPoints");
         }
     }
 }

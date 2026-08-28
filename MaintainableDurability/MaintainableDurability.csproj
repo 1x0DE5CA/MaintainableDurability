@@ -58,6 +58,7 @@
         <Compile Include="Patches\Patch_InspectPaneFiller_DrawHealth.cs" />
         <Compile Include="Patches\Patch_ThingWithComps_GetTooltip.cs" />
         <Compile Include="Patches\Patch_Thing_TakeDamage.cs" />
+        <Compile Include="Patches\Patch_WorkGiver_DoBill_TryFindBestBillIngredients.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>

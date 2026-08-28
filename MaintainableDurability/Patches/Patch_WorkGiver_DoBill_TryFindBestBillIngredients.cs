@@ -111,7 +111,7 @@ namespace MaintainableDurability.Patches
             var chosenStuff = new List<ThingCount>();
             var missingStuffIngredients = new List<IngredientCount>();
 
-            Predicate<List<Thing>> foundStuffIngredientsAndChoose1 = foundThings =>
+            Predicate<List<Thing>> foundStuffIngredientsAndChoose = foundThings =>
                 (bool)TryFindBestIngredientsInSet_NoMixHelper(
                     null,
                     foundThings,
@@ -126,7 +126,7 @@ namespace MaintainableDurability.Patches
             var stuffFound = (bool)TryFindBestIngredientsHelper(
                     null,
                     stuffThingValidator,
-                    foundStuffIngredientsAndChoose1,
+                    foundStuffIngredientsAndChoose,
                     stuffOnlyIngredients,
                     pawn,
                     billGiver,

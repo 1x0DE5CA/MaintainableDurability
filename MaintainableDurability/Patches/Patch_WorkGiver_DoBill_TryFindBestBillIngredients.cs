@@ -134,11 +134,6 @@ namespace MaintainableDurability.Patches
                     bill.ingredientSearchRadius
                 );
 
-            if (stuffFound)
-                Log.Message("Stuff found");
-            if (chosenStuff.Count > 0)
-                Log.Message($"{chosenStuff[0].Thing}");
-
             if (stuffFound && chosenStuff.Count > 0)
             {
                 chosen.Clear();

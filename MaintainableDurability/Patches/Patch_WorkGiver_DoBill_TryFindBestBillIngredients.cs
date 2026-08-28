@@ -23,6 +23,9 @@ namespace MaintainableDurability.Patches
         private static readonly FastInvokeHandler GetBillGiverRootCell =
             MethodInvoker.GetHandler(AccessTools.Method(typeof(WorkGiver_DoBill), "GetBillGiverRootCell"));
 
+        private static readonly FastInvokeHandler TryFindBestIngredientsInSet_NoMixHelper =
+            MethodInvoker.GetHandler(AccessTools.Method(typeof(WorkGiver_DoBill), "TryFindBestIngredientsInSet_NoMixHelper"));
+
         [HarmonyPrefix]
         public static bool Prefix(ref bool __result, Bill bill, Pawn pawn, Thing billGiver, List<ThingCount> chosen,
             List<IngredientCount> missingIngredients)
@@ -108,11 +111,8 @@ namespace MaintainableDurability.Patches
             var chosenStuff = new List<ThingCount>();
             var missingStuffIngredients = new List<IngredientCount>();
 
-            var tryFindBestIngredientsInSet_NoMixHelperMI = AccessTools.Method(typeof(WorkGiver_DoBill), "TryFindBestIngredientsInSet_NoMixHelper");
-            var tryFindBestIngredientsInSet_NoMixHelper = MethodInvoker.GetHandler(tryFindBestIngredientsInSet_NoMixHelperMI);
-
             Predicate<List<Thing>> foundStuffIngredientsAndChoose1 = foundThings =>
-                (bool)tryFindBestIngredientsInSet_NoMixHelper(
+                (bool)TryFindBestIngredientsInSet_NoMixHelper(
                     null,
                     foundThings,
                     stuffOnlyIngredients,

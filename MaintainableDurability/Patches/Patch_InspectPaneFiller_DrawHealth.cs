@@ -7,7 +7,6 @@ using Verse;
 
 namespace MaintainableDurability.Patches
 {
-    [HarmonyDebug]
     [HarmonyPatch(typeof(InspectPaneFiller), nameof(InspectPaneFiller.DrawHealth))]
     public class Patch_InspectPaneFiller_DrawHealth
     {
